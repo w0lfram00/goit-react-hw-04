@@ -8,7 +8,6 @@ import { RingLoader } from "react-spinners";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
-import { GalleryContext } from "./GalleryContext";
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -81,12 +80,18 @@ function App() {
   return (
     <>
       <SearchBar updateQuery={updateQuery} />
-      <GalleryContext
-        value={[imageModal, setImageModal, openModal, closeModal]}
-      >
-        {photos.length != 0 && <ImageGallery photos={photos} />}
-        <ImageModal isOpen={isModalOpen} setError={setError} />
-      </GalleryContext>
+      {photos.length != 0 && (
+        <ImageGallery
+          photos={photos}
+          setImageModal={setImageModal}
+          openModal={openModal}
+        />
+      )}
+      <ImageModal
+        isOpen={isModalOpen}
+        imageModal={imageModal}
+        closeModal={closeModal}
+      />
       {isLoading && <RingLoader />}
       {error && <ErrorMessage />}
       {totalPages.current > page && photos.length != 0 && (

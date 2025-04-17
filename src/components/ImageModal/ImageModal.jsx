@@ -1,16 +1,7 @@
-import React, { Children, useEffect } from "react";
 import Modal from "react-modal";
-import { useGallery } from "../../GalleryContext";
 import s from "./ImageModal.module.css";
 
-const ImageModal = ({ isOpen }) => {
-  const [imageModal, setImageModal, , closeModal] = useGallery();
-
-  useEffect(() => {
-    return () => {
-      setImageModal(undefined);
-    };
-  }, []);
+const ImageModal = ({ isOpen, imageModal, closeModal }) => {
   if (!imageModal) return;
   return (
     <Modal

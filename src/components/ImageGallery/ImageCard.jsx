@@ -1,9 +1,6 @@
 import React from "react";
-import { useGallery } from "../../GalleryContext";
 
-const ImageCard = ({ image }) => {
-  console.log(image);
-  const [, setImageModal, openModal] = useGallery();
+const ImageCard = ({ image, setImageModal, openModal }) => {
   const handleClick = () => {
     setImageModal(image);
     openModal();
